@@ -1,11 +1,14 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
+    background-color: blanchedalmond;
   }
   
   body {
-    background: #333;
-    color: hsl(200, 100%, 90%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y: top;
+    color: hsl(0, 0%, 0%);
     max-width: 400px;
     padding: 1rem;
     margin: 0 auto;
