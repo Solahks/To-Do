@@ -1,14 +1,11 @@
 * {
-    font-family:serif;
+    font-family:monospace;
     box-sizing: border-box;
-    background-color: blanchedalmond;
   }
   
   body {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-position-y: top;
-    color: hsl(29, 48%, 20%);
+    background: #e6e3cc;
+    color: hsl(41, 39%, 23%);
     max-width: 400px;
     padding: 1rem;
     margin: 0 auto;
@@ -42,9 +39,9 @@
   }
   
   .btn.btn-danger {
-    background: hsl(0, 100%, 40%, 0.1);
-    border: 1px solid hsl(0, 100%, 40%);
-    color: hsl(0, 100%, 40%);
+    background: hsla(27, 100%, 40%, 0.192);
+    border: 1px dashed hsl(24, 99%, 36%);
+    color: hsl(24, 99%, 36%);
   }
   
   .btn.btn-danger:hover,
@@ -102,7 +99,7 @@
   }
   
   .list li:has(input:focus-visible) label {
-    outline: 1px solid hsl(54, 100%, 50%);
+    outline: 1px solid hsl(54, 98%, 21%);
   }
   
   .list li input {
@@ -132,12 +129,12 @@
   
   .list li:has(input:checked) label::before {
     content: "✔";
-    background: hsl(66, 52%, 53%);
-    color: hsl(61, 100%, 90%);
+    background: hsl(56, 76%, 35%);
+    color: hsl(66, 100%, 90%);
     font-size: 0.75rem;
     font-weight: bold;
   }
   
   .list li:has(input:checked) label:hover::before {
-    background: hsl(59, 100%, 30%);
+    background: hsl(56, 76%, 23%);
   }
