@@ -46,7 +46,7 @@ export default function dailyApp() {
     <>
       <NewDailyQuest onSubmit={addDaily} />
       <h1 className="header">Quest Log</h1>
-      <dailyList dailys={dailys} toggleDaily={toggleDaily} deleteDaily={deleteDaily} />
+      <dailyQuest dailys={dailys} toggleDailys={toggleDaily} deleteDailys={deleteDaily} />
     </>
   )
 }
