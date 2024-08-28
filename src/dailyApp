@@ -1,0 +1,52 @@
+import { useEffect, useState } from "react"
+import "./styles.css"
+import { NewDailyQuest } from "./DailyQuestForm"
+import { dailyQuest } from "./dailyQuestList"
+
+export default function dailyApp() {
+  const [dailys, setDailys] = useState(() => {
+    const localValue = localStorage.getItem("ITEMS")
+    if (localValue == null) return []
+
+    return JSON.parse(localValue)
+  })
+
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(dailys))
+  }, [dailys])
+
+  function addDaily(title) {
+    setDailys(currentDailys => {
+      return [
+        ...currentDailys,
+        { id: crypto.randomUUID(), title, completed: false },
+      ]
+    })
+  }
+
+  function toggleDaily(id, completed) {
+    setDailys(currentDailys => {
+      return currentDailys.map(daily => {
+        if (daily.id === id) {
+          return { ...daily, completed }
+        }
+
+        return daily
+      })
+    })
+  }
+
+  function deleteDaily(id) {
+    setDailys(currentDailys => {
+      return currentDailys.filter(daily => daily.id !== id)
+    })
+  }
+
+  return (
+    <>
+      <NewDailyQuest onSubmit={addDaily} />
+      <h1 className="header">Quest Log</h1>
+      <dailyList dailys={dailys} toggleDaily={toggleDaily} deleteDaily={deleteDaily} />
+    </>
+  )
+}
