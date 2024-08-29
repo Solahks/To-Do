@@ -11,7 +11,7 @@
     margin: 0 auto;
   }
   
-  .new-item-form {
+  .new-quest-form {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -22,6 +22,13 @@
     flex-direction: column;
     gap: 0.1rem;
   }
+
+  .daily-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
   
   .btn {
     background: hsla(54, 85%, 22%, 0.322);
@@ -48,8 +55,19 @@
   .btn.btn-danger:focus-visible {
     background: hsl(0, 100%, 40%, 0.2);
   }
+
+  .btn.btn-yay {
+    background: hsla(177, 100%, 40%, 0.192);
+    border: 1px dashed hsl(157, 99%, 36%);
+    color: hsl(182, 98%, 23%);
+  }
   
-  .new-item-form input {
+  .btn.btn-yay:hover,
+  .btn.btn-yay:focus-visible {
+    background: hsla(209, 100%, 40%, 0.2);
+  }
+  
+  .new-quest-form input {
     outline: none;
     border: 4px ridge hsl(62, 24%, 26%);
     background: hsl(61, 35%, 39%);
@@ -58,25 +76,41 @@
     color: hsl(60, 67%, 80%);
   }
   
-  .new-item-form input:focus {
+  .new-quest-form input:focus {
+    border: 4px ridge hsl(54, 86%, 31%);
+  }
+
+  .new-daily-form input {
+    outline: none;
+    border: 4px ridge hsl(62, 24%, 26%);
+    background: hsl(61, 35%, 39%);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    color: hsl(60, 67%, 80%);
+  }
+  
+  .new-daily-form input:focus {
     border: 4px ridge hsl(54, 86%, 31%);
   }
   
   .header {
     font-size: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     margin-bottom: 0.5rem;
+  }
+
+  .daily-header {
+    font-size: 1.9rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
   
   .list {
     margin: 0;
     padding: 0;
     margin-left: 1rem;
+    margin-bottom: 10rem;
     list-style: none;
-  }
-  
-  .list li:has(input:checked) label {
-    color: hsl(69, 20%, 40%);
   }
   
   .list {
@@ -94,15 +128,63 @@
   .list li label {
     display: flex;
     gap: 0.25rem;
-    cursor: pointer;
     align-items: center;
   }
   
   .list li:has(input:focus-visible) label {
     outline: 1px solid hsl(54, 98%, 21%);
   }
+
   
-  .list li input {
+  .list li label::before {
+    content: "";
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: hsl(58, 33%, 56%);
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /*DAILY QUEST LISTS*/
+  .dailyList {
+    margin: 0;
+    padding: 0;
+    margin-left: 1rem;
+    margin-bottom: 10rem;
+    list-style: none;
+  }
+  
+  .dailyList li:has(input:checked) label {
+    color: hsl(51, 31%, 69%);
+  }
+  
+  .dailyList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .dailyList li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .dailyList li label {
+    display: flex;
+    gap: 0.25rem;
+    cursor: pointer;
+    align-items: center;
+  }
+  
+  .dailyList li:has(input:focus-visible) label {
+    outline: 1px solid hsl(54, 98%, 21%);
+  }
+  
+  .dailyList li input {
     outline: none;
     width: 0;
     height: 0;
@@ -111,7 +193,7 @@
     position: absolute;
   }
   
-  .list li label::before {
+  .dailyList li label::before {
     content: "";
     display: block;
     width: 0.9rem;
@@ -123,11 +205,11 @@
     align-items: center;
   }
   
-  .list li label:hover::before {
+  .dailyList li label:hover::before {
     background: hsl(59, 58%, 68%);
   }
   
-  .list li:has(input:checked) label::before {
+  .dailyList li:has(input:checked) label::before {
     content: "✔";
     background: hsl(56, 76%, 35%);
     color: hsl(66, 100%, 90%);
@@ -135,6 +217,6 @@
     font-weight: bold;
   }
   
-  .list li:has(input:checked) label:hover::before {
+  .dailyList li:has(input:checked) label:hover::before {
     background: hsl(56, 76%, 23%);
   }

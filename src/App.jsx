@@ -1,53 +1,40 @@
-import { useEffect, useState } from "react"
-import { NewTodoForm } from "./NewTodoForm"
-import "./styles.css"
-import { TodoList } from "./TodoList"
+import "./styles.css";
 
 export default function App() {
-  const [todos, setTodos] = useState(() => {
-    const localValue = localStorage.getItem("ITEMS")
-    if (localValue == null) return []
-
-    return JSON.parse(localValue)
-  })
-
-  useEffect(() => {
-    localStorage.setItem("ITEMS", JSON.stringify(todos))
-  }, [todos])
-
-  function addTodo(title) {
-    setTodos(currentTodos => {
-      return [
-        ...currentTodos,
-        { id: crypto.randomUUID(), title, completed: false },
-      ]
-    })
-  }
-
-  function toggleTodo(id, completed) {
-    setTodos(currentTodos => {
-      return currentTodos.map(todo => {
-        if (todo.id === id) {
-          return { ...todo, completed }
-        }
-
-        return todo
-      })
-    })
-  }
-
-  function deleteTodo(id) {
-    setTodos(currentTodos => {
-      return currentTodos.filter(todo => todo.id !== id)
-    })
-  }
-
   return (
     <>
-      <NewTodoForm onSubmit={addTodo} />
-      <h1 className="header">Quest Log</h1>
-      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      <form className="new-quest-form">
+        <div className="form-row">
+          <label htmlFor="quest">Add a New Quest</label>
+          <input type="text" id="quest"></input>
+        </div>
+      </form>
+      <h1 className="Header">Quest Log</h1>
+      <ul className="list">
+        <li>
+          <label>
+            Item 1
+          </label>
+          <button className="btn btn-yay">Complete</button>
+          <button className="btn btn-danger">Abandon</button>
+        </li>
+      </ul>
+      <form className="new-daily-form">
+        <div className="daily-form-row">
+          <label htmlFor="daily">Add a Daily Quest</label>
+          <input type="text" id="daily"></input>
+        </div>
+      </form>
+      <h2 className="daily-header"> Daily Quest Log</h2>
+      <ul className="dailyList">
+        <li>
+          <label>
+            <input type="checkbox" />
+            Item 1
+          </label>
+          <button className="btn btn-danger">Abandon</button>
+        </li>
+      </ul>
     </>
-  )
+  );
 }
-
