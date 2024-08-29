@@ -68,7 +68,7 @@
   
   .btn.btn-danger {
     background: hsla(27, 100%, 40%, 0.192);
-    border: 1px dashed hsl(24, 99%, 36%);
+    border: 1px dotted hsl(24, 99%, 36%);
     color: hsl(24, 99%, 36%);
   }
   
@@ -79,7 +79,7 @@
 
   .btn.btn-yay {
     background: hsla(177, 100%, 40%, 0.192);
-    border: 1px dashed hsl(157, 99%, 36%);
+    border: 1px dotted hsl(157, 99%, 36%);
     color: hsl(182, 98%, 23%);
   }
   
