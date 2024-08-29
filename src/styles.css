@@ -6,7 +6,10 @@
   body {
     background: #e6e3cc;
     color: hsl(41, 39%, 23%);
-    max-width: 400px;
+    max-width: 500px;
+    border: 4px;
+    border-style:double;
+    border-color:hsl(41, 39%, 23%);
     padding: 1rem;
     margin: 0 auto;
   }
@@ -37,10 +40,28 @@
     padding: 0.25em 0.5em;
     border-radius: 0.25em;
     cursor: pointer;
-    outline: none;
+    box-shadow: 2px 1px 2px hsla(54, 85%, 13%, 0.678);
   }
   
   .btn:hover,
+  .btn:focus-visible {
+    background: hsla(64, 84%, 34%, 0.39);
+  }
+
+  .btn.dailyBtn
+  {
+    background: hsla(54, 85%, 22%, 0.322);
+    border: 2px ridge hsl(40, 21%, 61%);
+    color: hsl(29, 44%, 22%);
+    padding: 0.25em 0.5em;
+    width:100%;
+    margin-top: .5rem;
+    border-radius: 0.25em;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .btn.dailyBtn:hover,
   .btn:focus-visible {
     background: hsla(64, 84%, 34%, 0.39);
   }
@@ -70,10 +91,11 @@
   .new-quest-form input {
     outline: none;
     border: 4px ridge hsl(62, 24%, 26%);
-    background: hsl(61, 35%, 39%);
+    background: hsla(61, 35%, 39%, 0.781);
     border-radius: 0.25em;
-    padding: 0.25em 0.5em;
-    color: hsl(60, 67%, 80%);
+    padding: 0.25em 1em;
+    color: hsl(60, 59%, 85%);
+    font-size: larger;
   }
   
   .new-quest-form input:focus {
@@ -83,10 +105,11 @@
   .new-daily-form input {
     outline: none;
     border: 4px ridge hsl(62, 24%, 26%);
-    background: hsl(61, 35%, 39%);
+    background: hsla(61, 35%, 39%, 0.781);
     border-radius: 0.25em;
-    padding: 0.25em 0.5em;
-    color: hsl(60, 67%, 80%);
+    padding: 0.25em 1em;
+    color: hsl(60, 59%, 85%);
+    font-size: larger;
   }
   
   .new-daily-form input:focus {
