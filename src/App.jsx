@@ -16,6 +16,8 @@ export default function App() {
         { id: crypto.randomUUID(), title: newQuest, completed: false },
       ];
     });
+
+    setNewQuest("")
   }
 
   function handleDailySubmit(e) {
@@ -27,6 +29,38 @@ export default function App() {
         { id: crypto.randomUUID(), title: newDaily, completed: false },
       ];
     });
+
+    setNewDaily("")
+  }
+
+  function toggleDaily(id, completed) {
+    setDailys(currentDailys => {
+      return currentDailys.map(daily => {
+        if (daily.id === id) {
+          return {...daily, completed}
+        }
+
+        return daily
+      })
+    })
+  }
+
+  function deleteDaily(id) {
+    setDailys(currentDailys => {
+      return currentDailys.filter(daily => daily.id !== id)
+    })
+  }
+  
+  function deleteTask(id) {
+    setTasks(currentTasks => {
+      return currentTasks.filter(task => task.id !== id)
+    })
+  }
+
+  function completeTask(id) {
+    setTasks(currentTasks => {
+      return currentTasks.filter(task => task.id !== id)
+    })
   }
 
   return (
@@ -47,10 +81,10 @@ export default function App() {
       <ul className="list">
         {tasks.map((task) => {
           return (
-            <li>
+            <li key={task.id}>
               <label>{task.title}</label>
-              <button className="btn btn-yay">Complete</button>
-              <button className="btn btn-danger">Abandon</button>
+              <button onClick={ () => completeTask(task.id)} className="btn btn-yay">Complete</button>
+              <button onClick={ () => deleteTask(task.id)} className="btn btn-danger">Abandon</button>
             </li>
           );
         })}
@@ -71,12 +105,14 @@ export default function App() {
       <ul className="dailyList">
         {dailys.map((daily) => {
           return (
-            <li>
+            <li key={daily.id}>
               <label>
-                <input type="checkbox" />
+                <input type="checkbox"
+                checked={daily.completed}
+                onChange={e => toggleDaily(daily.id, e.target.checked)} />
                 {daily.title}
               </label>
-              <button className="btn btn-danger">Abandon</button>
+              <button onClick={ () => deleteDaily(daily.id)} className="btn btn-danger">Abandon</button>
             </li>
           );
         })}
