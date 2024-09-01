@@ -1,20 +1,28 @@
 * {
     font-family:monospace;
     box-sizing: border-box;
+    background-image: url("images/background15.jpg");
+    background-size: contain;
+  }
+
+  .bodywrapper {
+    background: #e6e3cc;
   }
   
   body {
     background: #e6e3cc;
     color: hsl(41, 39%, 23%);
     max-width: 500px;
-    border: 4px;
-    border-style:double;
+    border: 10px;
+    border-style:double ridge;
     border-color:hsl(41, 39%, 23%);
     padding: 1rem;
     margin: 2rem auto;
+    box-shadow: 10px 10px 8px black;
   }
   
   header {
+    background: #e6e3cc;
     text-align: center;
     font-size: 2rem;
     font-weight:bolder;
@@ -22,34 +30,46 @@
   }
 
   #completeQuest {
+    background: #e6e3cc;
     text-align:right;
   }
 
   #completeDaily {
+    background: #e6e3cc;
     text-align:right;
   }
 
   .new-quest-form {
+    background: #e6e3cc;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
   
   .form-row {
+    background: #e6e3cc;
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
   }
 
   .daily-form-row {
+    background: #e6e3cc;
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
   }
 
+  form.new-daily-form {
+    background: #e6e3cc;
+  }
+
+  label {
+    background: #e6e3cc;
+  }
   
   .btn {
-    background: hsla(54, 85%, 22%, 0.322);
+    background: hsl(51, 23%, 61%);
     border: 2px ridge hsl(40, 21%, 61%);
     color: hsl(29, 44%, 22%);
     padding: 0.25em 0.5em;
@@ -63,9 +83,16 @@
     background: hsla(64, 84%, 34%, 0.39);
   }
 
+  .btn:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+            box-shadow: inset 0px 0px 5px #c1c1c1;
+     outline: none;
+  }
+
   .btn.dailyBtn
   {
-    background: hsla(54, 85%, 22%, 0.322);
     border: 2px ridge hsl(40, 21%, 61%);
     color: hsl(29, 44%, 22%);
     padding: 0.25em 0.5em;
@@ -131,50 +158,58 @@
     border: 4px ridge hsl(54, 86%, 31%);
   }
   
-  .header {
-    font-size: 1.5rem;
+  .quest-header {
+    background: #e6e3cc;
+    font-size: 2rem;
     margin-top: 2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
   }
 
   .daily-header {
-    font-size: 1.9rem;
+    background: #e6e3cc;
+    font-size: 2rem;
     margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   
   .list {
+    background: #e6e3cc;
     margin: 0;
     padding: 0;
     margin-left: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     list-style:none;
   }
   
   .list {
+    background: #e6e3cc;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
   }
   
   .list li {
+    background: #e6e3cc;
     display: flex;
     gap: 1rem;
     align-items: center;
   }
   
   .list li label {
+    background: #e6e3cc;
     display: flex;
     gap: 1rem;
     align-items: center;
   }
   
   .list li:has(input:focus-visible) label {
+    background: #e6e3cc;
     outline: 1px solid hsl(54, 98%, 21%);
   }
 
   
   .list li label::before {
+    background: #e6e3cc;
     content: "";
     display: block;
     width: 0.5rem;
@@ -189,10 +224,11 @@
 
   /*DAILY QUEST LISTS*/
   .dailyList {
+    background: #e6e3cc;
     margin: 0;
     padding: 0;
     margin-left: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     list-style: none;
   }
   
@@ -201,18 +237,21 @@
   }
   
   .dailyList {
+    background: #e6e3cc;
     display: flex;
     flex-direction: column;
     gap: .6rem;
   }
   
   .dailyList li {
+    background: #e6e3cc;
     display: flex;
     gap: 1rem;
     align-items: center;
   }
   
   .dailyList li label {
+    background: #e6e3cc;
     display: flex;
     gap: 1rem;
     cursor: pointer;

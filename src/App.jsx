@@ -72,7 +72,7 @@ export default function App() {
 // };
 
   return (
-    <>
+    <div className="bodywrapper">
     <header>Quest Log</header>
       <div id="completeQuest">Completed-  </div>
       <form onSubmit={handleSubmit} className="new-quest-form">
@@ -87,8 +87,9 @@ export default function App() {
         </div>
         <button className="btn">Accept</button>
       </form>
-      <h1 className="Header">One Time Quests</h1>
+      <h1 className="quest-header">One Time Quests</h1>
       <ul className="list">
+      {tasks.length === 0 && "All Quests Completed!"}
         {tasks.map((task) => {
           return (
             <li key={task.id}>
@@ -114,6 +115,7 @@ export default function App() {
       </form>
       <h2 className="daily-header"> Daily Quests</h2>
       <ul className="dailyList">
+        {dailys.length === 0 && "No Set Daily Quests."}
         {dailys.map((daily) => {
           return (
             <li key={daily.id}>
@@ -128,6 +130,6 @@ export default function App() {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }
