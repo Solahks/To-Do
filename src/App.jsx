@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./styles.css";
 
 export default function App() {
@@ -6,6 +6,7 @@ export default function App() {
   const [newDaily, setNewDaily] = useState("");
   const [tasks, setTasks] = useState([]);
   const [dailys, setDailys] = useState([]);
+  const [name, setName] = useState(localStorage.getItem('name') || '');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -63,8 +64,17 @@ export default function App() {
     })
   }
 
+//   function setUserName() {
+//     const myName = prompt('Welcome Adventurer!  What is your name?');
+//     if (myName) {
+//     localStorage.setItem('name', myName);
+//     setName(myName);}
+// };
+
   return (
     <>
+    <header>Quest Log</header>
+      <div id="completeQuest">Completed-  </div>
       <form onSubmit={handleSubmit} className="new-quest-form">
         <div className="form-row">
           <label htmlFor="quest">Add a New Quest</label>
@@ -77,7 +87,7 @@ export default function App() {
         </div>
         <button className="btn">Accept</button>
       </form>
-      <h1 className="Header">Quest Log</h1>
+      <h1 className="Header">One Time Quests</h1>
       <ul className="list">
         {tasks.map((task) => {
           return (
@@ -89,6 +99,7 @@ export default function App() {
           );
         })}
       </ul>
+      <div id="completeDaily">Completed Daily-  </div>
       <form onSubmit={handleDailySubmit} className="new-daily-form">
         <div className="daily-form-row">
           <label htmlFor="daily">Add a Daily Quest</label>
@@ -101,7 +112,7 @@ export default function App() {
         </div>
         <button className="btn dailyBtn">Accept</button>
       </form>
-      <h2 className="daily-header"> Daily Quest Log</h2>
+      <h2 className="daily-header"> Daily Quests</h2>
       <ul className="dailyList">
         {dailys.map((daily) => {
           return (
