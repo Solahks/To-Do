@@ -3,6 +3,7 @@
     box-sizing: border-box;
     background-image: url("images/background15.jpg");
     background-size: contain;
+    background-position: center;
   }
 
   .bodywrapper {
