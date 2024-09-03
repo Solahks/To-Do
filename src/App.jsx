@@ -7,6 +7,8 @@ export default function App() {
   const [tasks, setTasks] = useState([]);
   const [dailys, setDailys] = useState([]);
   const [name, setName] = useState(localStorage.getItem('name') || '');
+  const [count, setCount] = useState(0)
+  const [dcount, setDcount] = useState(0)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -74,7 +76,7 @@ export default function App() {
   return (
     <div className="bodywrapper">
     <header>Quest Log</header>
-      <div id="completeQuest">Completed-  </div>
+      <div id="completeQuest">Completed- {count}  </div>
       <form onSubmit={handleSubmit} className="new-quest-form">
         <div className="form-row">
           <label htmlFor="quest">Add a New Quest</label>
@@ -94,13 +96,13 @@ export default function App() {
           return (
             <li key={task.id}>
               <label>{task.title}</label>
-              <button onClick={ () => completeTask(task.id)} className="btn btn-yay">Complete</button>
+              <button onClick={ () => completeTask(task.id) [setCount((count) => count + 1)]} className="btn btn-yay">Complete</button>
               <button onClick={ () => deleteTask(task.id)} className="btn btn-danger">Abandon</button>
             </li>
           );
         })}
       </ul>
-      <div id="completeDaily">Completed Daily-  </div>
+      <div id="completeDaily">Completed Daily- {dcount}  </div>
       <form onSubmit={handleDailySubmit} className="new-daily-form">
         <div className="daily-form-row">
           <label htmlFor="daily">Add a Daily Quest</label>
@@ -122,7 +124,7 @@ export default function App() {
               <label>
                 <input type="checkbox"
                 checked={daily.completed}
-                onChange={e => toggleDaily(daily.id, e.target.checked)} />
+                onChange={e => toggleDaily(daily.id, e.target.checked) [setDcount((dcount) => dcount + 1)]} />
                 {daily.title}
               </label>
               <button onClick={ () => deleteDaily(daily.id)} className="btn btn-danger">Abandon</button>
