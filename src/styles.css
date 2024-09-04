@@ -40,7 +40,9 @@
 
   .clearToggle {
     background:#e6e3cc;
-    margin: 0rem 0rem 3rem 25rem
+    height:18px;
+    font-size: 10px;
+    margin: 0rem 0rem 3rem 15rem;
 
   }
 
