@@ -38,6 +38,12 @@
     text-align:right;
   }
 
+  .clearToggle {
+    background:#e6e3cc;
+    margin: 0rem 0rem 3rem 25rem
+
+  }
+
   .new-quest-form {
     background: #e6e3cc;
     display: flex;
@@ -168,7 +174,7 @@
     background: #e6e3cc;
     font-size: 2rem;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: -1.5rem;
   }
   
   .list {

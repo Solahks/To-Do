@@ -6,9 +6,9 @@ export default function App() {
   const [newDaily, setNewDaily] = useState("");
   const [tasks, setTasks] = useState([]);
   const [dailys, setDailys] = useState([]);
-  const [name, setName] = useState(localStorage.getItem('name') || '');
-  const [count, setCount] = useState(0)
-  const [dcount, setDcount] = useState(0)
+  const [name, setName] = useState(localStorage.getItem("name") || "");
+  const [count, setCount] = useState(0);
+  const [dcount, setDcount] = useState(0);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -20,7 +20,7 @@ export default function App() {
       ];
     });
 
-    setNewQuest("")
+    setNewQuest("");
   }
 
   function handleDailySubmit(e) {
@@ -33,50 +33,60 @@ export default function App() {
       ];
     });
 
-    setNewDaily("")
+    setNewDaily("");
   }
 
   function toggleDaily(id, completed) {
-    setDailys(currentDailys => {
-      return currentDailys.map(daily => {
+    setDailys((currentDailys) => {
+      return currentDailys.map((daily) => {
         if (daily.id === id) {
-          return {...daily, completed}
+          return { ...daily, completed };
         }
+        return daily;
+      });
+    });
+  }
 
-        return daily
-      })
-    })
+  function countDaily() {
+    setDailys((currentDailys) => {
+      return currentDailys.map((daily) => {
+        if (daily.completed === true) {
+          setDcount(() => dcount + 1);
+        }
+        return daily;
+      });
+    });
   }
 
   function deleteDaily(id) {
-    setDailys(currentDailys => {
-      return currentDailys.filter(daily => daily.id !== id)
-    })
+    setDailys((currentDailys) => {
+      return currentDailys.filter((daily) => daily.id !== id);
+    });
   }
-  
+
   function deleteTask(id) {
-    setTasks(currentTasks => {
-      return currentTasks.filter(task => task.id !== id)
-    })
+    setTasks((currentTasks) => {
+      return currentTasks.filter((task) => task.id !== id);
+    });
   }
 
   function completeTask(id) {
-    setTasks(currentTasks => {
-      return currentTasks.filter(task => task.id !== id)
-    })
+    setTasks((currentTasks) => {
+      return currentTasks.filter((task) => task.id !== id);
+    });
   }
 
-//   function setUserName() {
-//     const myName = prompt('Welcome Adventurer!  What is your name?');
-//     if (myName) {
-//     localStorage.setItem('name', myName);
-//     setName(myName);}
-// };
+  //   function setUserName() {
+  //     const myName = prompt('Welcome Adventurer!  What is your name?');
+  //     if (myName) {
+  //     localStorage.setItem('name', myName);
+  //     setName(myName);}
+  // };
 
   return (
     <div className="bodywrapper">
-    <header>Quest Log</header>
-      <div id="completeQuest">Completed- {count}  </div>
+      <header>Quest Log</header>
+      <div id="completeQuest">Completed- {count} </div>
       <form onSubmit={handleSubmit} className="new-quest-form">
         <div className="form-row">
           <label htmlFor="quest">Add a New Quest</label>
@@ -91,18 +101,30 @@ export default function App() {
       </form>
       <h1 className="quest-header">One Time Quests</h1>
       <ul className="list">
-      {tasks.length === 0 && "All Quests Completed!"}
+        {tasks.length === 0 && "All Quests Completed!"}
         {tasks.map((task) => {
           return (
             <li key={task.id}>
               <label>{task.title}</label>
-              <button onClick={ () => completeTask(task.id) [setCount((count) => count + 1)]} className="btn btn-yay">Complete</button>
-              <button onClick={ () => deleteTask(task.id)} className="btn btn-danger">Abandon</button>
+              <button
+                onClick={() =>
+                  completeTask(task.id)[setCount((count) => count + 1)]
+                }
+                className="btn btn-yay"
+              >
+                Complete
+              </button>
+              <button
+                onClick={() => deleteTask(task.id)}
+                className="btn btn-danger"
+              >
+                Abandon
+              </button>
             </li>
           );
         })}
       </ul>
-      <div id="completeDaily">Completed Daily- {dcount}  </div>
+      <div id="completeDaily">Completed Daily- {dcount} </div>
       <form onSubmit={handleDailySubmit} className="new-daily-form">
         <div className="daily-form-row">
           <label htmlFor="daily">Add a Daily Quest</label>
@@ -116,18 +138,28 @@ export default function App() {
         <button className="btn dailyBtn">Accept</button>
       </form>
       <h2 className="daily-header"> Daily Quests</h2>
+      <button className="clearToggle">Clear checks</button>
       <ul className="dailyList">
         {dailys.length === 0 && "No Set Daily Quests."}
         {dailys.map((daily) => {
           return (
             <li key={daily.id}>
               <label>
-                <input type="checkbox"
-                checked={daily.completed}
-                onChange={e => toggleDaily(daily.id, e.target.checked) [setDcount((dcount) => dcount + 1)]} />
+                <input
+                  type="checkbox"
+                  checked={daily.completed}
+                  onChange={(e) =>
+                    toggleDaily(daily.id, e.target.checked)[countDaily()]
+                  }
+                />
                 {daily.title}
               </label>
-              <button onClick={ () => deleteDaily(daily.id)} className="btn btn-danger">Abandon</button>
+              <button
+                onClick={() => deleteDaily(daily.id)}
+                className="btn btn-danger"
+              >
+                Abandon
+              </button>
             </li>
           );
         })}
