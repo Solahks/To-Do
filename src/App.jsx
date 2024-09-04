@@ -58,6 +58,19 @@ export default function App() {
     });
   }
 
+  function removeChecks() {
+    setDailys((currentDailys) => {
+      return currentDailys.map((daily) => {
+        if (daily.completed === true) {
+          return {...daily.completed === false};
+        }
+        return daily;
+      });
+    });
+  }
+
+
+
   function deleteDaily(id) {
     setDailys((currentDailys) => {
       return currentDailys.filter((daily) => daily.id !== id);
@@ -138,7 +151,7 @@ export default function App() {
         <button className="btn dailyBtn">Accept</button>
       </form>
       <h2 className="daily-header"> Daily Quests</h2>
-      <button className="clearToggle">Clear checks</button>
+      <button onClick={removeChecks} className="clearToggle">Clear checks</button>
       <ul className="dailyList">
         {dailys.length === 0 && "No Set Daily Quests."}
         {dailys.map((daily) => {
