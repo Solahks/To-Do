@@ -6,12 +6,11 @@ export default function App() {
   const [newDaily, setNewDaily] = useState("");
   const [tasks, setTasks] = useState([]);
   const [dailies, setDailies] = useState([]);
-
-  const [name, setName] = useState(localStorage.getItem("name") || "");
   const [count, setCount] = useState(0);
   const [dcount, setDcount] = useState(0);
+  // const [name, setName] = useState(localStorage.getItem("name") || "");
 
-
+  //FUNCTIONS FOR ONE TIME QUESTS(TASKS)//
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -24,6 +23,26 @@ export default function App() {
 
     setNewQuest("");
   }
+
+  function deleteTask(id) {
+    setTasks((currentTasks) => {
+      return currentTasks.filter((task) => task.id !== id);
+    });
+  }
+
+  function completeTask(id) {
+    setTasks((currentTasks) => {
+      return currentTasks.filter((task) => task.id !== id);
+    });
+  }
+  //   function setUserName() {
+  //     const myName = prompt('Welcome Adventurer!  What is your name?');
+  //     if (myName) {
+  //     localStorage.setItem('name', myName);
+  //     setName(myName);}
+  // };
+
+  //FUNCTIONS FOR DAILY QUESTS//
 
   function handleDailySubmit(e) {
     e.preventDefault();
@@ -38,6 +57,25 @@ export default function App() {
     setNewDaily("");
   }
 
+  const toggleDaily = (id, completed) => {
+    setDailies((prev) =>
+      prev.map((d) => (d.id === id ? { ...d, completed: completed } : d))
+    );
+  };
+
+  const resetAllDailies = (id, completed) => {
+    const resetDailies = dailies.map((d) => (d.id === id ? { ...d, completed: completed } : {...d, completed: false} ));
+    console.log("resetDailies: ", resetDailies)
+    setDailies(resetDailies);
+  };
+
+
+  function deleteDaily(id) {
+    setDailies((currentDailies) => {
+      return currentDailies.filter((daily) => daily.id !== id);
+    });
+  }
+
   // function countDaily() {
   //   setDailies((currentDailies) => {
   //     return currentDailies.map((daily) => {
@@ -50,46 +88,6 @@ export default function App() {
   // }
 
   // const countDailies = () => currentDailies.filter(d => d.completed === true).length;
-
-  const toggleDaily = (id, completed) => {
-    setDailies((prev) => prev.map((d) => d.id === id ? {...d, completed: completed } : d));
-  }
-  
-  const resetAllDailies = () => {
-    const resetDailies = dailies.map(d => d.completed = false);
-    setDailies(resetDailies)
-  }
-
-  // function resetAllDailies(id) {
-  //   setDailies((currentDailies) => {
-  //     dailies.map(d => d.completed = false)
-  //   })
-  // }
-
-  function deleteDaily(id) {
-    setDailies((currentDailies) => {
-      return currentDailies.filter((daily) => daily.id !== id);
-    });
-  }
-
-  function deleteTask(id) {
-    setTasks((currentTasks) => {
-      return currentTasks.filter((task) => task.id !== id);
-    });
-  }
-
-  function completeTask(id) {
-    setTasks((currentTasks) => {
-      return currentTasks.filter((task) => task.id !== id);
-    });
-  }
-
-  //   function setUserName() {
-  //     const myName = prompt('Welcome Adventurer!  What is your name?');
-  //     if (myName) {
-  //     localStorage.setItem('name', myName);
-  //     setName(myName);}
-  // };
 
   return (
     <div className="bodywrapper">
@@ -152,7 +150,7 @@ export default function App() {
       <ul className="dailyList">
         {dailies.length === 0 && "No Set Daily Quests."}
         {dailies.map((daily) => {
-            console.log("daily id: ", daily.id) 
+          console.log("daily id: ", daily.id);
           return (
             <li key={daily.id}>
               <label>
