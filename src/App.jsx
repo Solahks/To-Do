@@ -1,14 +1,16 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./styles.css";
 
 export default function App() {
   const [newQuest, setNewQuest] = useState("");
   const [newDaily, setNewDaily] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [dailys, setDailys] = useState([]);
+  const [dailies, setDailies] = useState([]);
+
   const [name, setName] = useState(localStorage.getItem("name") || "");
   const [count, setCount] = useState(0);
   const [dcount, setDcount] = useState(0);
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -26,9 +28,9 @@ export default function App() {
   function handleDailySubmit(e) {
     e.preventDefault();
 
-    setDailys((currentDailys) => {
+    setDailies((currentDailies) => {
       return [
-        ...currentDailys,
+        ...currentDailies,
         { id: crypto.randomUUID(), title: newDaily, completed: false },
       ];
     });
@@ -36,44 +38,37 @@ export default function App() {
     setNewDaily("");
   }
 
-  function toggleDaily(id, completed) {
-    setDailys((currentDailys) => {
-      return currentDailys.map((daily) => {
-        if (daily.id === id) {
-          return { ...daily, completed };
-        }
-        return daily;
-      });
-    });
+  // function countDaily() {
+  //   setDailies((currentDailies) => {
+  //     return currentDailies.map((daily) => {
+  //       if (daily.completed === true) {
+  //         setDcount(() => dcount + 1);
+  //       }
+  //       return daily;
+  //     });
+  //   });
+  // }
+
+  // const countDailies = () => currentDailies.filter(d => d.completed === true).length;
+
+  const toggleDaily = (id, completed) => {
+    setDailies((prev) => prev.map((d) => d.id === id ? {...d, completed: completed } : d));
+  }
+  
+  const resetAllDailies = () => {
+    const resetDailies = dailies.map(d => d.completed = false);
+    setDailies(resetDailies)
   }
 
-  function countDaily() {
-    setDailys((currentDailys) => {
-      return currentDailys.map((daily) => {
-        if (daily.completed === true) {
-          setDcount(() => dcount + 1);
-        }
-        return daily;
-      });
-    });
-  }
-
-  function removeChecks() {
-    setDailys((currentDailys) => {
-      return currentDailys.map((daily) => {
-        if (daily.completed === true) {
-          return {...daily.completed === false};
-        }
-        return daily;
-      });
-    });
-  }
-
-
+  // function resetAllDailies(id) {
+  //   setDailies((currentDailies) => {
+  //     dailies.map(d => d.completed = false)
+  //   })
+  // }
 
   function deleteDaily(id) {
-    setDailys((currentDailys) => {
-      return currentDailys.filter((daily) => daily.id !== id);
+    setDailies((currentDailies) => {
+      return currentDailies.filter((daily) => daily.id !== id);
     });
   }
 
@@ -151,22 +146,24 @@ export default function App() {
         <button className="btn dailyBtn">Accept</button>
       </form>
       <h2 className="daily-header"> Daily Quests</h2>
-      <button onClick={removeChecks} className="clearToggle">Clear checks</button>
+      <button onClick={resetAllDailies} className="clearToggle">
+        Clear checks
+      </button>
       <ul className="dailyList">
-        {dailys.length === 0 && "No Set Daily Quests."}
-        {dailys.map((daily) => {
+        {dailies.length === 0 && "No Set Daily Quests."}
+        {dailies.map((daily) => {
+            console.log("daily id: ", daily.id) 
           return (
             <li key={daily.id}>
               <label>
                 <input
                   type="checkbox"
                   checked={daily.completed}
-                  onChange={(e) =>
-                    toggleDaily(daily.id, e.target.checked)[countDaily()]
-                  }
+                  onChange={(e) => toggleDaily(daily.id, e.target.checked)}
                 />
                 {daily.title}
               </label>
+
               <button
                 onClick={() => deleteDaily(daily.id)}
                 className="btn btn-danger"
