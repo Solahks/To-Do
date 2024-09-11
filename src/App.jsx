@@ -57,18 +57,32 @@ export default function App() {
     setNewDaily("");
   }
 
+  function countDailies() {
+    setDailies((currentDailies) => {
+      return currentDailies.map((daily) => {
+        if (daily.completed === true) {
+          setDcount(() => dcount + 1);
+        }
+        return daily;
+      });
+    });
+  }
+
+  // const countDailies = () => currentDailies.filter(d => d.completed === true).length;
+
   const toggleDaily = (id, completed) => {
     setDailies((prev) =>
       prev.map((d) => (d.id === id ? { ...d, completed: completed } : d))
     );
+    countDailies();
   };
 
   const resetAllDailies = (id, completed) => {
-    const resetDailies = dailies.map((d) => (d.id === id ? { ...d, completed: completed } : {...d, completed: false} ));
-    console.log("resetDailies: ", resetDailies)
+    const resetDailies = dailies.map((d) =>
+      d.id === id ? { ...d, completed: completed } : { ...d, completed: false }
+    );
     setDailies(resetDailies);
   };
-
 
   function deleteDaily(id) {
     setDailies((currentDailies) => {
@@ -76,18 +90,11 @@ export default function App() {
     });
   }
 
-  // function countDaily() {
-  //   setDailies((currentDailies) => {
-  //     return currentDailies.map((daily) => {
-  //       if (daily.completed === true) {
+  // const countDailies = () => {
+  //   if (daily.completed === true) {
   //         setDcount(() => dcount + 1);
   //       }
-  //       return daily;
-  //     });
-  //   });
-  // }
-
-  // const countDailies = () => currentDailies.filter(d => d.completed === true).length;
+  //       return daily;}}
 
   return (
     <div className="bodywrapper">
@@ -113,9 +120,10 @@ export default function App() {
             <li key={task.id}>
               <label>{task.title}</label>
               <button
-                onClick={() =>
-                  completeTask(task.id)[setCount((count) => count + 1)]
-                }
+                onClick={() => {
+                  completeTask(task.id);
+                  setCount((prev) => prev + 1);
+                }}
                 className="btn btn-yay"
               >
                 Complete
