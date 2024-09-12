@@ -8,7 +8,6 @@ export default function App() {
   const [dailies, setDailies] = useState([]);
   const [count, setCount] = useState(0);
   const [dcount, setDcount] = useState(0);
-  // const [name, setName] = useState(localStorage.getItem("name") || "");
 
   //FUNCTIONS FOR ONE TIME QUESTS(TASKS)//
   function handleSubmit(e) {
@@ -35,12 +34,6 @@ export default function App() {
       return currentTasks.filter((task) => task.id !== id);
     });
   }
-  //   function setUserName() {
-  //     const myName = prompt('Welcome Adventurer!  What is your name?');
-  //     if (myName) {
-  //     localStorage.setItem('name', myName);
-  //     setName(myName);}
-  // };
 
   //FUNCTIONS FOR DAILY QUESTS//
 
@@ -89,12 +82,6 @@ export default function App() {
       return currentDailies.filter((daily) => daily.id !== id);
     });
   }
-
-  // const countDailies = () => {
-  //   if (daily.completed === true) {
-  //         setDcount(() => dcount + 1);
-  //       }
-  //       return daily;}}
 
   return (
     <div className="bodywrapper">
